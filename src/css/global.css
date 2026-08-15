@@ -1,0 +1,26 @@
+@import "@fontsource/source-sans-3";
+
+/* Global style */
+body {
+  background-color: var(--branco) !important;
+  color: var(--cinza-secundario) !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+}
+
+/* Reset CSS */
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+
+body {
+  font-size: 100%;
+  list-style-type: none;
+  width: 100vw;
+  overflow-x: hidden;
+}
