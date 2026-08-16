@@ -51,12 +51,23 @@ export const LoginForm = styled.form`
     padding: 20px;
 `;
 
-export const RegisterText = styled.a`
+export const RegisterText = styled.button`
+    all: unset;
     margin-top: 0.625rem;
     font-size: 1.25rem;
     align-self: center;
     text-decoration: none;
+    color: var(--azul-informativo);
+    filter: brightness(0.8);
     cursor: pointer;
+
+    &:hover {
+        filter: brightness(1);
+    }
+
+    &:active {
+        filter: brightness(0.6);
+    }
 `;
 
 export const ButtonWrapper = styled.div`

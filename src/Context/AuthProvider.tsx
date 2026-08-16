@@ -18,8 +18,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoggedon(false);
   }
 
+  async function register(email: string, password: string) {
+    await api.post("/auth/register", {Username: email, Password: password})
+  }
+
   return (
-    <AuthContext.Provider value={{ isLoggedon, signIn, signOut }}>
+    <AuthContext.Provider value={{ isLoggedon, signIn, signOut, register }}>
       {children}
     </AuthContext.Provider>
   );

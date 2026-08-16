@@ -20,8 +20,6 @@ export default function EditBookingModal({
   currentBooking,
   onSave
 }: EditBookingModalProps) {
-  const [validated, setValidated] = useState(false);
-
   const [roomNumber, setRoomNumber] = useState("");
   const [startDate, setStartDate] = useState<Date>(new Date);
   const [endDate, setEndDate] = useState<Date>(new Date);
@@ -33,7 +31,6 @@ export default function EditBookingModal({
       setStartDate(new Date(currentBooking.startDate));
       setEndDate(new Date(currentBooking.endDate));
       setStatus(currentBooking.status);
-      setValidated(false);
     }
   }, [currentBooking]);
 
@@ -59,7 +56,7 @@ export default function EditBookingModal({
         <Modal.Title>Editar Reserva #{currentBooking.id}</Modal.Title>
       </Modal.Header>
 
-      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <Modal.Body>
           <Form.Group className="mb-3">
             <Form.Label>Número do Quarto</Form.Label>

@@ -4,6 +4,7 @@ import { Layout } from '../Components/Layout/Layout'
 import { HomePage } from '../Pages/Home'
 import { ProtectedRoute } from './ProtectedRoute'
 import { AddBooking } from '../Pages/AddBooking'
+import Register from '../Pages/Login/Register'
 
 export const Router = () => {
   return (
@@ -12,6 +13,10 @@ export const Router = () => {
       <Route
         path="/login"
         element={<Login />}
+      />
+      <Route
+        path="/register"
+        element={<Register />}
       />
 
       <Route element= {

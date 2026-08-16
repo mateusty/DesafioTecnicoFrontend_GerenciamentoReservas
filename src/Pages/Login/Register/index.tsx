@@ -8,27 +8,26 @@ import {
   LoginImage,
   LoginInfo,
   Logo,
-  ProjectSubtitle,
   ProjectTitle,
   RegisterText,
   StyledInputGroupText,
-} from "./style.ts";
+} from "../style.ts";
 
-import logoClaro from "../../assets/t2m-logo-tema-claro.png";
-import logoEscuro from "../../assets/t2m-logo-tema-escuro.png";
+import logoClaro from "../../../assets/t2m-logo-tema-claro.png";
+import logoEscuro from "../../../assets/t2m-logo-tema-escuro.png";
 import { toast } from "react-toastify";
 import { HiOutlineLockClosed } from "react-icons/hi";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import ButtonComponent from "../../Components/ButtonComponent/index.tsx";
-import { AuthContext } from "../../Context/AuthContext.ts";
+import ButtonComponent from "../../../Components/ButtonComponent/index.tsx";
+import { AuthContext } from "../../../Context/AuthContext.ts";
 import { useNavigate } from "react-router-dom";
-import { ThemeContext } from "../../Context/ThemeContext.ts";
+import { ThemeContext } from "../../../Context/ThemeContext.ts";
 
 const DOMINIO_EMAIL = "@t2mlab.com";
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate();
-  const { signIn } = useContext(AuthContext);
+  const { register } = useContext(AuthContext);
   const { currentTheme } = useContext(ThemeContext);
 
   const [password, setPassword] = useState<string>("");
@@ -51,8 +50,8 @@ const Login = () => {
       finalEmail = email + DOMINIO_EMAIL;
     }
 
-    await signIn(finalEmail, password);
-    navigate("/home");
+    await register(finalEmail, password);
+    navigate("/login");
 
   };
 
@@ -72,13 +71,8 @@ const Login = () => {
                 <ProjectTitle
                   color={currentTheme == "light" ? "#013D32" : "#FFF"}
                 >
-                  SGR
+                  Registre-se
                 </ProjectTitle>
-              </Row>
-              <Row>
-                <ProjectSubtitle>
-                  Sistema de Gerenciamento de Reservas
-                </ProjectSubtitle>
               </Row>
             </LoginInfo>
             <LoginForm onSubmit={handleSubmit}>
@@ -122,11 +116,11 @@ const Login = () => {
                   action={() => null}
                   alternativeText="Submit Button"
                   >
-                  Entrar
+                  Criar conta
                 </ButtonComponent>
               </ButtonWrapper>
-              <RegisterText onClick={() => navigate("/register")}>Criar uma nova conta</RegisterText>
             </LoginForm>
+            <RegisterText onClick={() => navigate(-1)}>← Voltar</RegisterText>
           </FormWrapper>
         </Col>
       </Row>
@@ -134,4 +128,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
