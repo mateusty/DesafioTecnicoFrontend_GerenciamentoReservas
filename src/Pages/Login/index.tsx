@@ -28,7 +28,7 @@ const DOMINIO_EMAIL = "@t2mlab.com";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { signIn } = useContext(AuthContext);
+  const { signIn, isLoggedon } = useContext(AuthContext);
   const { currentTheme } = useContext(ThemeContext);
 
   const [password, setPassword] = useState<string>("");
@@ -53,7 +53,6 @@ const Login = () => {
 
     await signIn(finalEmail, password);
     navigate("/home");
-
   };
 
   return (
@@ -125,8 +124,8 @@ const Login = () => {
                   Entrar
                 </ButtonComponent>
               </ButtonWrapper>
-              <RegisterText onClick={() => navigate("/register")}>Criar uma nova conta</RegisterText>
             </LoginForm>
+              <RegisterText onClick={() => navigate("/register")}>Criar uma nova conta</RegisterText>
           </FormWrapper>
         </Col>
       </Row>
