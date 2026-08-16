@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import type { SubmitEvent } from "react";
 import { Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import {
@@ -20,37 +20,40 @@ import { toast } from "react-toastify";
 import { HiOutlineLockClosed } from "react-icons/hi";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import ButtonComponent from "../../Components/ButtonComponent/index.tsx";
+import { AuthContext } from "../../Context/AuthContext.ts";
+import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../../Context/ThemeContext.ts";
 
 const DOMINIO_EMAIL = "@t2mlab.com";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { signIn } = useContext(AuthContext);
+  const { currentTheme } = useContext(ThemeContext);
+
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [currentTheme, setCurrentTheme] = useState("light");
-
-
-  // async function handleLogin(email: string, password: string) {
-  //   let finalEmail = email;
-
-  //   if (email.includes("@")) {
-  //     if (!email.endsWith(DOMINIO_EMAIL)) {
-  //       toast.error(
-  //         "O email é invalido, deve ser do dominio @t2mlab.com ou apenas o usuario sem o dominio",
-  //       );
-  //       return;
-  //     }
-  //   } else {
-  //     finalEmail = email + DOMINIO_EMAIL;
-  //   }
-  //   console.log(finalEmail + " " + password);
-
-  // }
-
+  
   const [showSenha, setShowSenha] = useState(false);
-
+  
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // await handleLogin(email, password);
+
+    let finalEmail = email;
+    if (email.includes("@")) {
+      if (!email.endsWith(DOMINIO_EMAIL)) {
+        toast.error(
+          "O email é invalido, deve ser do dominio @t2mlab.com ou apenas o usuario sem o dominio",
+        );
+        return;
+      }
+    } else {
+      finalEmail = email + DOMINIO_EMAIL;
+    }
+
+    await signIn(finalEmail, password);
+    navigate("/home");
+
   };
 
   return (

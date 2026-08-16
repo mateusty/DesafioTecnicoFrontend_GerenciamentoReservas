@@ -1,5 +1,7 @@
 import { ToastContainer } from "react-toastify"
 import { Router } from "./Routes/Router"
+import { AuthProvider } from "./Context/AuthProvider"
+import { ThemeProvider } from "./Context/ThemeProvider"
 
 function App() {
 
@@ -18,7 +20,11 @@ function App() {
         theme="colored"
       />
 
-        <Router/>
+      <ThemeProvider>
+        <AuthProvider>
+          <Router/>
+        </AuthProvider>
+      </ThemeProvider>
     </>
   )
 }
