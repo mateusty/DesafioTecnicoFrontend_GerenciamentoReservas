@@ -9,7 +9,7 @@ export const PageHeaderContainerStyle = styled.div`
   width: 100%;
   height: 100px;
 
-  background-color: var(--login-botao);
+  background-color: var(--botao);
   color: var(--titulo-header);
 
   span {

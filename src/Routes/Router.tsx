@@ -3,6 +3,7 @@ import Login from '../Pages/Login'
 import { Layout } from '../Components/Layout/Layout'
 import { HomePage } from '../Pages/Home'
 import { ProtectedRoute } from './ProtectedRoute'
+import { AddBooking } from '../Pages/AddBooking'
 
 export const Router = () => {
   return (
@@ -19,6 +20,7 @@ export const Router = () => {
         </ProtectedRoute>
       }>
         <Route path="/home" element={<HomePage />}/>
+        <Route path="/booking" element={<AddBooking />}/>
       </Route>
 
     </Routes>

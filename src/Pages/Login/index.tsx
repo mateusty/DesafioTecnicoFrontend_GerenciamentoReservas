@@ -117,7 +117,7 @@ const Login = () => {
                 <ButtonComponent
                   type="submit"
                   size="18rem"
-                  $bgColor="var(--login-botao)"
+                  $bgColor="var(--botao)"
                   $textColor="#FFFFFF"
                   action={() => null}
                   alternativeText="Submit Button"

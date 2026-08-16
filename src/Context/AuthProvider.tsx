@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { AuthContext } from "./AuthContext";
 import api from "../Service/api";
+import { toast } from "react-toastify";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
@@ -8,6 +9,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   async function signIn(email: string, password: string) {
     await api.post('/auth/login', { Username: email, Password: password });
+    toast.success("Usuário conectou com sucesso!")
     setIsLoggedon(true);
   }
 

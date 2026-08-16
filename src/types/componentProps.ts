@@ -15,3 +15,17 @@ export interface ButtonStyleProps {
     $bgColor: string;
     $textColor: string;
 }
+
+export interface TableComponentProps {
+    columns: string[];
+    children: ReactNode;
+}
+
+export interface PaginationComponentProps {
+    selectedValue: number;
+    setSelectedValue: (i: number) => void;
+    totalItems: number;
+    totalPages: number;
+    currentPage: number;
+    changePage: (i: number) => void; 
+}
