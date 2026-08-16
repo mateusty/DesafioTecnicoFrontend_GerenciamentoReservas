@@ -23,7 +23,7 @@ export const AddBooking = () => {
 
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const bookingRequest: BookingRequest = {
             HotelId: selectedHotel,
@@ -33,7 +33,7 @@ export const AddBooking = () => {
             Status: "Pending"
         }
 
-        postBooking(bookingRequest);
+        await postBooking(bookingRequest);
 
         navigate("/home");
     };
