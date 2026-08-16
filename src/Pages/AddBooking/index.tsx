@@ -6,7 +6,7 @@ import PageContentContainer from "../../Components/Layout/PageContentContainer"
 import DatePicker from "react-datepicker"
 import ButtonComponent from "../../Components/ButtonComponent"
 import { useEffect, useState } from "react"
-import type { Hotel } from "../../types/entity"
+import type { Bookings, Hotel } from "../../types/entity"
 import { fetchHotels } from "../../Service/fetchData"
 import "react-datepicker/dist/react-datepicker.css"
 import { postBooking, type BookingRequest } from "../../Service/postData"
@@ -119,7 +119,7 @@ export const AddBooking = () => {
                         Confirmar
                         </ButtonComponent>
                         <ButtonComponent
-                            type="submit"
+                            type="button"
                             $bgColor="var(--cinza-primario)"
                             $textColor="#FFF"
                             size="10rem"

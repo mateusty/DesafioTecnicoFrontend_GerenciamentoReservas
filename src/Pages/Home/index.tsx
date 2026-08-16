@@ -13,6 +13,8 @@ import { BsEye } from "react-icons/bs"
 import StatusDisplay from "../../Components/TableComponents/StatusDisplay"
 import { useNavigate } from "react-router-dom"
 import { fetchBookings, fetchHotels } from "../../Service/fetchData"
+import EditBookingModal from "../../Components/EditBookingModal"
+import { putBooking, type BookingRequest } from "../../Service/postData"
 
 export const HomePage = () => {
 
@@ -24,10 +26,24 @@ export const HomePage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
+  const [currentBooking, setCurrentBooking] = useState<Bookings | null>(null);
+  const [showModal, setShowModal] = useState<boolean>(false);
+
   useEffect(() => {
     fetchHotels(setHotels, setIsLoading);
     fetchBookings(setUserBookings, setIsLoading);
   }, []);
+
+  const handleShowModalButton = (booking: Bookings) => {
+    setCurrentBooking(booking);
+    setShowModal(true);
+  }
+
+  const onSaveEditBooking = async (bookingRequest: BookingRequest, bookingId: number) => {
+    await putBooking(bookingRequest, bookingId);
+    setShowModal(false)
+    fetchBookings(setUserBookings, setIsLoading);
+  }
 
   return (
     <Col>
@@ -64,13 +80,19 @@ export const HomePage = () => {
                       <td>{booking.roomNumber}</td>
                       <td>{new Date(booking.startDate).toLocaleDateString("pt-BR")}</td>
                       <td><StatusDisplay status={booking.status}/></td>
-                      <td className="action-column">
+                      <td className="action-column" onClick={() => handleShowModalButton(booking)}>
                         <BsEye />
                       </td>
                     </tr>
                   );
                 })}
               </TableComponent>
+              <EditBookingModal 
+              show={showModal}
+              onHide={() => setShowModal(false)}
+              currentBooking={currentBooking}
+              onSave={onSaveEditBooking}
+              />
             </Row>
             <Row>
               <PaginationComponent
